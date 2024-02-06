@@ -37,6 +37,7 @@ const getURLs = async (position, location) => {
     });
   const html = await response.text();
   const $ = cheerio.load(html);
+  console.log(html);
 
   const dataUrls = [];
   $('article.job.clicky').each((index, element) => {
