@@ -219,7 +219,33 @@ app.get("/get", async (req, res) => {
     Jobs[`${URLs[i]}`] = job;
   }
 
-  res.send({Jobs, URLs});
+  res.send({ Jobs, URLs });
+});
+
+app.get("/check", async (req, res) => {
+  let response = await fetch("https://bot.sannysoft.com/", {
+    "headers": {
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "accept-language": "en-US,en;q=0.9,hi;q=0.8",
+      "cache-control": "max-age=0",
+      "downlink": "10",
+      "ect": "4g",
+      "rtt": "150",
+      "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Linux\"",
+      "sec-fetch-dest": "document",
+      "sec-fetch-mode": "navigate",
+      "sec-fetch-site": "none",
+      "sec-fetch-user": "?1",
+      "upgrade-insecure-requests": "1",
+      "cookie": "_ym_uid=1706163834876491379; _ym_d=1706163834; _ym_isad=2"
+    },
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": null,
+    "method": "GET"
+  });
+  res.send(await response.text());
 });
 
 app.listen(PORT, () => {
